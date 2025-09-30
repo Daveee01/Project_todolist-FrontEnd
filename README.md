@@ -117,12 +117,3 @@ Tasks are stored in memory only. When you refresh the page, tasks will reset to 
    - Props for passing data between components
    - Simple state management without persistence
 
-## 👥 Group Members
-
-**Front-End E • Group ela ais**
-
-Perfect for student presentations! 🎓
-
----
-
-*Simple, clean, and easy to understand - perfect for learning React!*
