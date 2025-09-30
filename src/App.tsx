@@ -1,151 +1,133 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import TaskList from './components/TaskList';
 import '../styles.css';
 
+// Interface sederhana untuk task
 interface Task {
   id: number;
   title: string;
   completed: boolean;
-  dueDate?: string | null;
-  createdAt: string;
+  dueDate?: string;
 }
 
-type FilterType = 'all' | 'pending' | 'completed' | 'overdue';
-
 const App: React.FC = () => {
-  const [tasks, setTasks] = useState<Task[]>(() => {
-    const savedTodos = localStorage.getItem('todos');
-    return savedTodos ? JSON.parse(savedTodos) : [];
-  });
-  const [newTaskTitle, setNewTaskTitle] = useState<string>('');
-  const [newDueDate, setNewDueDate] = useState<string>('');
-  const [filter, setFilter] = useState<FilterType>('all');
+  // State untuk menyimpan data tasks dan input form
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [newTask, setNewTask] = useState('');
+  const [dueDate, setDueDate] = useState('');
+  const [filter, setFilter] = useState('all');
 
-  useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(tasks));
-  }, [tasks]);
-
-  const addTodo = (e: React.FormEvent) => {
+  // Fungsi untuk menambah task baru
+  const addTask = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newTaskTitle.trim()) return;
+    if (!newTask.trim()) return;
 
-    const newTodo: Task = {
+    const task: Task = {
       id: Date.now(),
-      title: newTaskTitle.trim(),
+      title: newTask.trim(),
       completed: false,
-      dueDate: newDueDate || null,
-      createdAt: new Date().toISOString(),
+      dueDate: dueDate || undefined,
     };
 
-    setTasks((prevTasks) => [...prevTasks, newTodo]);
-    setNewTaskTitle('');
-    setNewDueDate('');
+    setTasks([...tasks, task]);
+    setNewTask('');
+    setDueDate('');
   };
 
-  const toggleTodo = (id: number) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
-      )
-    );
+  // Fungsi untuk mengubah status completed task
+  const toggleTask = (id: number) => {
+    setTasks(tasks.map(task => 
+      task.id === id ? { ...task, completed: !task.completed } : task
+    ));
   };
 
-  const deleteTodo = (id: number) => {
-    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+  // Fungsi untuk menghapus task
+  const deleteTask = (id: number) => {
+    setTasks(tasks.filter(task => task.id !== id));
   };
 
-  const isOverdue = (task: Task): boolean => {
-    if (!task.dueDate || task.completed) return false;
-    const today = new Date().toISOString().split('T')[0];
-    return task.dueDate < today;
-  };
-
-  const getFilteredTasks = (): Task[] => {
-    const today = new Date().toISOString().split('T')[0];
-
+  // Fungsi untuk memfilter tasks berdasarkan filter yang dipilih
+  const getFilteredTasks = () => {
     switch (filter) {
       case 'pending':
-        return tasks.filter((task) => !task.completed);
+        return tasks.filter(task => !task.completed);
       case 'completed':
-        return tasks.filter((task) => task.completed);
-      case 'overdue':
-        return tasks.filter((task) => !task.completed && task.dueDate && task.dueDate < today);
+        return tasks.filter(task => task.completed);
       default:
         return tasks;
     }
   };
 
+  // Menghitung jumlah tasks untuk statistik
   const totalTasks = tasks.length;
-  const pendingTasks = tasks.filter((task) => !task.completed).length;
-  const completedTasks = tasks.filter((task) => task.completed).length;
-  const overdueTasks = tasks.filter((task) => isOverdue(task)).length;
+  const pendingTasks = tasks.filter(task => !task.completed).length;
+  const completedTasks = tasks.filter(task => task.completed).length;
 
   return (
     <div className="todo-app-container">
       <header className="header">
-        <h1>Task Management</h1>
+        <h1>Todo List - Pang Kase Inga</h1>
       </header>
+      
       <main className="main-content">
+        {/* Form untuk menambah task baru */}
         <div className="add-todo-section">
-          <form onSubmit={addTodo} className="todo-form">
+          <form onSubmit={addTask} className="todo-form">
             <input
               type="text"
-              id="todoInput"
               className="todo-input"
-              placeholder="Add a new task..."
-              value={newTaskTitle}
-              onChange={(e) => setNewTaskTitle(e.target.value)}
+              placeholder="Tambah task baru..."
+              value={newTask}
+              onChange={(e) => setNewTask(e.target.value)}
             />
             <input
               type="date"
-              id="dueDate"
               className="due-date-input"
-              value={newDueDate}
-              onChange={(e) => setNewDueDate(e.target.value)}
+              value={dueDate}
+              onChange={(e) => setDueDate(e.target.value)}
             />
-            <button type="submit" className="add-btn">Add Task</button>
+            <button type="submit" className="add-btn">Tambah Task</button>
           </form>
         </div>
 
+        {/* Tombol filter untuk memfilter tasks */}
         <div className="filters-stats-section">
           <div className="filters">
             <button
-              id="filterAll"
               className={`filter-btn ${filter === 'all' ? 'active bg-white/40' : 'bg-white/20'}`}
               onClick={() => setFilter('all')}
             >
-              All
+              Semua
             </button>
             <button
-              id="filterPending"
               className={`filter-btn ${filter === 'pending' ? 'active bg-white/40' : 'bg-white/20'}`}
               onClick={() => setFilter('pending')}
             >
-              Pending
+              Belum Selesai
             </button>
             <button
-              id="filterCompleted"
               className={`filter-btn ${filter === 'completed' ? 'active bg-white/40' : 'bg-white/20'}`}
               onClick={() => setFilter('completed')}
             >
-              Completed
-            </button>
-            <button
-              id="filterOverdue"
-              className={`filter-btn ${filter === 'overdue' ? 'active bg-white/40' : 'bg-white/20'}`}
-              onClick={() => setFilter('overdue')}
-            >
-              Overdue
+              Selesai
             </button>
           </div>
-          <div className="todo-stats" id="todoStats">
-            Total: {totalTasks} | Pending: {pendingTasks} | Completed: {completedTasks}
-            {overdueTasks > 0 && ` | Overdue: ${overdueTasks}`}
+          
+          {/* Statistik jumlah tasks */}
+          <div className="todo-stats">
+            Total: {totalTasks} | Belum Selesai: {pendingTasks} | Selesai: {completedTasks}
           </div>
         </div>
 
-        <TaskList tasks={getFilteredTasks()} onToggle={toggleTodo} onDelete={deleteTodo} />
+        {/* Daftar tasks yang ditampilkan */}
+        <TaskList 
+          tasks={getFilteredTasks()} 
+          onToggle={toggleTask} 
+          onDelete={deleteTask} 
+        />
       </main>
+      
+      <div className="site-corner-note">Front-End E • Group ela ais</div>
     </div>
   );
 };
