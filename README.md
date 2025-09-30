@@ -1,73 +1,87 @@
-# React + TypeScript + Vite
+Project Todolist - Frontend
+This is the frontend for a simple and modern to-do list application built with React, TypeScript, and Vite.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Table of Contents
+Features
 
-Currently, two official plugins are available:
+Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Getting Started
 
-## React Compiler
+Prerequisites
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Installation
 
-## Expanding the ESLint configuration
+Available Scripts
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Project Structure
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Features
+Add Tasks: Quickly add new tasks to your to-do list.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+View Tasks: See a clear list of all your pending tasks.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Toggle Completion: Mark tasks as complete or incomplete.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Delete Tasks: Remove tasks you no longer need.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Technologies Used
+React: A JavaScript library for building user interfaces.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+TypeScript: A typed superset of JavaScript that compiles to plain JavaScript.
+
+Vite: A modern frontend build tool that provides a faster and leaner development experience.
+
+CSS: For styling the application.
+
+Getting Started
+Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
+
+Prerequisites
+You need to have Node.js and npm (or yarn) installed on your machine.
+
+Installation
+Clone the repository:
+
+git clone [https://github.com/your-username/project_todolist-frontend.git](https://github.com/your-username/project_todolist-frontend.git)
+cd project_todolist-frontend
+
+Install NPM packages:
+
+npm install
+
+Available Scripts
+In the project directory, you can run:
+
+npm run dev
+Runs the app in development mode. Open http://localhost:5173 (or the port specified in your terminal) to view it in the browser. The page will reload if you make edits.
+
+npm run build
+Builds the app for production to the dist folder. It correctly bundles React in production mode and optimizes the build for the best performance.
+
+npm run lint
+Runs the linter to check for code quality and style issues across the project.
+
+npm run preview
+Serves the production build from the dist folder locally to preview the final application.
+
+Project Structure
+project_todolist-frontend/
+├── public/
+│   └── vite.svg
+├── src/
+│   ├── assets/
+│   │   └── react.svg
+│   ├── components/
+│   │   ├── TaskItem.tsx
+│   │   └── TaskList.tsx
+│   ├── App.css
+│   ├── App.tsx
+│   ├── index.css
+│   └── main.tsx
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package.json
+├── README.md
+└── tsconfig.json
