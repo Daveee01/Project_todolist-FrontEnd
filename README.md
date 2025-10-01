@@ -1,6 +1,11 @@
-# 📝 Simple Todo List App
+# 📝Todo List App
 
-A clean and simple todo list application built with React, TypeScript, and Vite. Perfect for students learning React basics with a beautiful gradient UI and local storage.
+# Kelompok " Ela Ais "
+- Jones, Hikari
+- Kapal, David
+- Patras, Samuel
+- Pamusu, Cliferd
+
 
 ![Todo List App](https://img.shields.io/badge/React-19.1.1-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-blue) ![Vite](https://img.shields.io/badge/Vite-7.1.7-646CFF)
 
@@ -12,10 +17,6 @@ A clean and simple todo list application built with React, TypeScript, and Vite.
 - **🗑️ Delete Tasks**: Remove tasks you don't need
 - **🔍 Filter Tasks**: View All, Pending, or Completed tasks
 - **📊 Task Count**: See how many tasks you have
-- **🎨 Beautiful UI**: Modern gradient design
-- **🔄 Fresh Start**: Tasks reset when you refresh - perfect for demos!
-
-## 🚀 Getting Started
 
 ### Prerequisites
 
@@ -79,19 +80,7 @@ src/
 
 ### TaskList Component
 - Displays all tasks or filtered tasks
-- Shows "No tasks" message when empty
-
-## 🎨 Design Features
-
-- **Beautiful Gradient**: Blue gradient background
-- **Glass Effect**: Semi-transparent cards
-- **Simple Icons**: Checkmark (✓) and trash (🗑️) emojis
-- **Clean Typography**: Easy to read fonts
-- **Responsive**: Works on phone and computer
-
-## 💾 How Data Works
-
-Tasks are stored in memory only. When you refresh the page, tasks will reset to empty - perfect for clean demonstrations!
+- Shows "No tasks" message when empty0
 
 ## 🛠️ Commands to Run
 
