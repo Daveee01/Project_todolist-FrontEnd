@@ -1,13 +1,11 @@
 # 📝Todo List App
+![Todo List App](https://img.shields.io/badge/React-19.1.1-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-blue) ![Vite](https://img.shields.io/badge/Vite-7.1.7-646CFF)
 
 # Kelompok " Ela Ais "
 - Jones, Hikari
 - Kapal, David
 - Patras, Samuel
 - Pamusu, Cliferd
-
-
-![Todo List App](https://img.shields.io/badge/React-19.1.1-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-blue) ![Vite](https://img.shields.io/badge/Vite-7.1.7-646CFF)
 
 ## ✨ Features
 
